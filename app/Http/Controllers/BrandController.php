@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Multipic;
-
+use Auth;
 use Illuminate\Support\Carbon;
 use Image;
 
@@ -152,5 +152,13 @@ class BrandController extends Controller
         }   //end of the foreach
 
         return Redirect()->back()->with('success', 'MultiPic Inserted Successfully');
+    }
+
+    //USER METHOD
+
+    public function Logout(){
+        Auth::logout();
+        return Redirect()->route('login')->with('success', 'User Logged Out');
+
     }
 }
