@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\HomeController;
+
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -23,7 +25,8 @@ Route::get('/email/verify', function () {
 */
 
 Route::get('/', function () {
-    return view('home');
+    $brands = DB::table('brands')->get();
+    return view('home',compact('brands'));
 });
 
 Route::get('/home', function () {
@@ -70,8 +73,12 @@ Route::get('/multi/image',[BrandController::class,'Multipic'])->name('multi.imag
 Route::post('/multi/add',[BrandController::class,'StoreImage'])->name('store.image');
 
 
+//ADMIN ALL ROUTE
+Route::get('/home/slider',[HomeController::class,'HomeSlider'])->name('home.slider');
 
+Route::get('/add/slider',[HomeController::class,'AddSlider'])->name('add.slider');
 
+Route::post('/store/slider',[HomeController::class,'StoreSlider'])->name('store.slider');
 
 
 
