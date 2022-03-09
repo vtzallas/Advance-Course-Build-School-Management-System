@@ -161,4 +161,6 @@ class BrandController extends Controller
         return Redirect()->route('login')->with('success', 'User Logged Out');
 
     }
+
+ 
 }
