@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 
 
 Route::get('/email/verify', function () {
@@ -86,6 +87,13 @@ Route::post('/slider/update/{id}',[HomeController::class,'Update']);
 
 Route::get('/slider/delete/{id}',[HomeController::class,'Delete']);
 
+//Home About Route
+
+Route::get('/home/About',[AboutController::class,'HomeAbout'])->name('home.about');
+
+Route::get('/add/about',[AboutController::class,'AddAbout'])->name('add.about');
+
+Route::post('/store/About',[AboutController::class,'StoreAbout'])->name('store.about');
 
 
 
