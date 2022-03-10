@@ -27,12 +27,14 @@ Route::get('/email/verify', function () {
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
-    return view('home',compact('brands'));
-});
+    $abouts = DB::table('home_abouts')->first();
+    $images= DB::table('multipics')->get();
+    return view('home',compact('brands','abouts','images'));
+})->name('home');
 
-Route::get('/home', function () {
-    echo "This is Home Page";
-});
+// Route::get('/h', function () {
+//     echo "This is Home Page";
+// });
 
 Route::get('/about', function () {
     return view('about');
@@ -95,6 +97,34 @@ Route::get('/add/about',[AboutController::class,'AddAbout'])->name('add.about');
 
 Route::post('/store/About',[AboutController::class,'StoreAbout'])->name('store.about');
 
+Route::get('/about/edit/{id}',[AboutController::class,'EditAbout']);
+
+Route::post('/about/update/{id}',[AboutController::class,'UpdateAbout']);
+
+Route::get('/about/delete/{id}',[AboutController::class,'DeleteAbout']);
+
+//Portfolio route
+
+Route::get('/portfolio',[AboutController::class,'Portfolio'])->name('portfolio');
+
+//Admin Contact Page
+Route::get('admin/contact',[ContactController::class,'AdminContact'])->name('admin.contact');
+
+Route::get('add/contact',[ContactController::class,'AdminAddContact'])->name('add.contact');
+
+Route::post('/store/contact',[ContactController::class,'StoreAdminContact'])->name('store.contact');
+
+Route::get('/contact/edit/{id}',[ContactController::class,'EditAdminContact']);
+
+Route::post('/contact/update/{id}',[ContactController::class,'UpdateContact']);
+
+Route::get('/contact/delete/{id}',[ContactController::class,'DeleteContact']);
+
+//Home Contact Page Route
+
+Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
+
+Route::post('/contact/form',[ContactController::class,'ContactForm'])->name('contact.form');
 
 
 
